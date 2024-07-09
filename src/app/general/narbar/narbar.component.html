@@ -1,0 +1,33 @@
+<section>
+    <header>
+        <nav>
+            <img class="logo"src="assets/logo.png" alt="logo"> 
+        </nav>
+        <nav>
+            <a *ngIf="login.log==1" (click)="togglePopup()" class="popup-trigger">
+                <span class="material-symbols-outlined">notifications</span>
+            </a>
+            <div *ngIf="popupVisible" class="popup-content">
+                    <div class="popup-title">
+                        <div class="row">
+                            <div class="col-5">
+                                <h3 class="popup-item">Notificaciones</h3>
+                            </div>
+                            <div class="col">
+                                <button class="popup-button">Marcar todos como leidos</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="popup-body">
+                        <app-notifications></app-notifications>
+                    </div>  
+            </div>
+        </nav>
+        <nav>
+            <a *ngIf="login.log==1"class="cta" (click)="login.logout()"><button>cerrar sesión</button></a>
+        </nav>
+    
+
+    </header>
+</section> 

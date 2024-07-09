@@ -1,0 +1,8 @@
+
+        <div class="doc" *ngFor="let file of view.files">
+            {{ file.name }}
+            <button (click)="view.downloadFile(file.path)">Download File</button>
+        </div>
+
+    
+              

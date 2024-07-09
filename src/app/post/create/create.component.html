@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="course-form">
+    <div class="form-group">
+      <label for="name">Titulo del Curso:</label>
+      <input type="text" id="name" required formControlName="title" name="name" placeholder="Ingresa el nombre del curso">
+    </div>
+    <div class="form-group">
+      <label for="controlName">Idioma:</label>
+      <select
+          formControlName="idioma_id"
+          id="idioma"
+          name="language"> 
+          <option *ngFor="let idioma of fkIdi" [value]="idioma.id">{{ idioma.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="controlName">Profesor:</label>
+      <select
+          formControlName="profesor_id"
+          id="profesor"
+          name="Profesor"> 
+          <option *ngFor="let profesor of fkProf" [value]="profesor.id">{{ profesor.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">Descripción:</label>
+      <textarea id="description" required formControlName="description" name="description" placeholder="Ingresa la descripción del curso"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="duration">Modalidad:</label>
+      <input type="text" id="duration" required formControlName="modalidad" name="duration" placeholder="Ingresa la duración del curso">
+    </div>
+    <button type="submit" class="btn-submit">Crear Curso</button>
+  </form>

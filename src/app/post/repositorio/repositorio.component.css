@@ -1,0 +1,15 @@
+
+.doc{
+    width: auto;
+    height: 75px;
+    margin: 10px;
+    padding: 5px;
+    background-color: rgb(231, 214, 214);
+    border: 1px solid rgb(218, 176, 176);
+    border-radius: 1px;
+    box-shadow: 0 5px 0 1px rgba(218, 176, 176, 1);
+    transition: all 0.3s ease;
+}
+.doc:hover{
+    background-color: rgb(225, 205, 205);
+}

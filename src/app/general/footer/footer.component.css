@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+.footer {
+    background-color: #681A5D;
+    color: white;
+    padding: 20px 0;
+    text-align: left;
+  }
+  
+  .footer .container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:left;
+  }
+  
+  .footer .university-info, .footer .language-center-info {
+    width: 50%;
+    padding: 7px;
+  }
+  .university-info span, .language-center-info span{
+    color: #EA72D0;
+  }
+  
+  .footer h3 {
+    margin-top: 0;
+    font-size: 20px;
+    align-items:end;
+  }
+  
+  .footer p {
+    margin: 0 0 10px;
+  }
+  
+  .footer a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  .bottom-bar{
+    background: #51034F;
+    text-align: center;
+    padding: 10px 0;
+  
+  }
+  .bottom-bar p{
+    color: rgb(255, 255, 255);
+    margin: 0;
+    font-size: 16px;
+    padding: 7px;
+  }

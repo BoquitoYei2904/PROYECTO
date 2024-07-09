@@ -1,0 +1,188 @@
+
+<div class="container" style="background-color: #64DFDF;">
+    <div class="row"><!--buttons-->
+        <div class="col">
+            <div class="row left">
+                <button class="simple-btn back" (click)="view.goTo('/home')">⬅ REGRESAR</button>
+            </div>
+        </div>
+        <div class="col" >
+            <div class="row end">
+                <div class="col col-3">
+                    <button *ngIf="login.type == 2 || login.type == 1" class="create-btn"(click)="createEvent()">crear</button></div>
+                <div class="col col-3">
+                    <button class="create-btn"(click)="calendar.openPopup('download')">Descargar Semana</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"> <!--Abajo-->
+        <div class="col col-3">
+            <app-profile></app-profile>
+        </div>
+        <div class="col"  id="table">
+            <div class="row center bg"> <!--CONTROLS-->
+                <div class="col col-2">
+                    <button class="simple-btn"(click)="currentWeek((this.offset=this.offset-1))"(click)="calendar.getEvents()">ANTERIOR</button>
+                </div>
+                <div class="col col-2"></div>
+                <div class="col col-1">
+                    <button class="simple-btn"(click)="currentWeek((this.offset=this.offset-4))"(click)="calendar.getEvents()">&#10094;&#10094;</button>
+                </div>
+                <div class="col">
+                    <div class="transparentCard">{{currentMonthYear}}</div>
+                </div>
+                <div class="col col-1">
+                    <button class="simple-btn"(click)="currentWeek((this.offset=this.offset+4))"(click)="calendar.getEvents()">&#10095;&#10095;</button>
+                </div>
+                <div class="col col-2"></div>
+                <div class="col col-2">
+                    <button class="simple-btn"(click)="currentWeek((this.offset=this.offset+1))"(click)="calendar.getEvents()">SIGUIENTE</button>
+                </div>
+            </div>
+            <div class="row"><!--CALENDAR TABLE-->
+                <table>
+                    <thead class="calendarhead">
+                        <tr class="calendarheaditem">
+                            <th></th>
+                            <th *ngFor="let day of calendar.week">
+                                <p [class.currentHeadNum]="currentDay(day.num)">{{ day.num }}</p>
+                                <span [class.currentHeadText]="currentDay(day.num)">{{ day.day }}</span>
+                                <p [class.thingyOff]="!currentDay(day.num)" [class.thingyOn]="currentDay(day.num)"></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="calendar-container">
+                        <tr class="calendarDataItem" *ngFor="let hour of hours" [id]="hour">
+                            <td class="hourData">{{ hour }}</td>
+                            <td *ngFor="let day of calendar.week; let i = index"
+                                [id]="day.day +' '+ hour" 
+                                [class.selected]="isCellInSelection(day.day, hour)"
+                                [class.even-row]="i % 2 === 1"
+                                (mousedown)="startSelection($event, day.day, hour)" 
+                                (mousemove)="mouseMove($event, day.day, hour)" 
+                                (mouseup)="endSelection($event, day.day, hour)">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--popup-->
+    <div class="overlay" id="popupOverlay">
+        <div class="popupCard">
+            <div class="row center">
+                <div class="container-form">
+                    <div class="close"id="closePopupBtn">X</div>
+                    <div class="row titlebg center">
+                        <div class="col">
+                            <h1>TITULO</h1>
+                        </div>
+                    </div>
+                    <!--ACTUAL FORM-->
+                    <form [formGroup]="calendar.form" (ngSubmit)="calendar.submit()">
+                        
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-area">
+                                    <div class="form-group">
+                                        <input
+                                            formControlName="title"
+                                            placeholder="Ingrese un titulo"
+                                            id="title"
+                                            text="text"
+                                            class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <textarea
+                                            formControlName="description"
+                                            placeholder="Describa su evento"
+                                            id="description" 
+                                            class="form-input"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-area">
+                                    <div class="form-group">
+                                        <label for="controlName">Dia:</label>
+                                        <input
+                                            formControlName="dia"
+                                            id="dia"
+                                            type="date" 
+                                            class="form-input"
+                                            [value]="calendar.daySended">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="controlName">inicio</label>
+                                        <input
+                                            formControlName="inicio"
+                                            id="HOLA" 
+                                            type="time" 
+                                            class="form-input calendar">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="controlName">final:</label>
+                                        <input
+                                            formControlName="final"
+                                            id="final"
+                                            type="time" 
+                                            class="form-input calendar">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-area">
+                                    <div class="form-group">
+                                        <label for="controlName">Curso:</label>
+                                        <select
+                                            formControlName="curso_id"
+                                            id="curso"
+                                            class="form-input"> 
+                                            <option *ngFor="let curso of calendar.fk" [value]="curso.id">{{ curso.title }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="controlName">Aviso:</label>
+                                        <select
+                                            formControlName="alerta"
+                                            id="alerta"
+                                            class="form-input">
+                                            <option *ngFor="let aviso of calendar.aviso" [value]="aviso.amount">{{ aviso.title }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row center">
+                            <p> aqui tu evento, nose man</p>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button class="create-btn" type="submit">+ AGREGAR</button> 
+                            </div>  
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <div class="popupCard" id="shh"><!--PARA IMPRIMIR-->
+            <div class="row center">
+                <div class="container-form">
+                    <div class="close"id="closeDownloadBtn">X</div>
+                    <div class="downloadCard">
+                        <button class="create-btn"(click)="downloadPdf()">downloadPdf</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

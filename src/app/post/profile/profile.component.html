@@ -1,0 +1,32 @@
+<div class="user-profile">  
+    <h2>Perfil de Usuario</h2>
+    <div class="foto" *ngIf="fields">
+      <img src="assets/images/profile.png" alt="logo">
+      <div class="profile">
+        <span class="greeting">Hola, {{fields.name}}</span>
+        <span>{{login.type == 1 ? "Administrador": login.type == 2 ? "Profesor": "Estudiante"}}</span>
+      </div> 
+    </div>
+    <div class="user-info" *ngIf="fields">
+      <span><strong>ID:</strong> {{fields.personalid}}</span>
+      <span><strong>Email:</strong> {{fields.email}}</span>
+      <span><strong>Dirección:</strong> {{fields.address}}</span>
+      <span><strong>Teléfono:</strong> {{fields.phone}}</span>
+      <span><strong>Edad:</strong> {{fields.age}}</span>
+    </div>
+    <div class="user-options">
+      <div class="user-item" (click)="view.goTo('/calendar')">
+        <div class="col col-9">
+          <div>AGENDA</div>
+        </div>
+        <div class="col end">&#10095;</div>
+      </div>
+      <div class="user-item" (click)="view.goTo('/cursos')">
+        <div class="col col-9">
+          <div>CURSOS</div>
+        </div>
+        <div class="col end">&#10095;</div>
+      </div>
+    </div>
+</div>
+

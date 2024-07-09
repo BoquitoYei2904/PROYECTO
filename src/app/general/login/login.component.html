@@ -1,0 +1,37 @@
+<section>
+  <div class="landing">
+  <div class="container p-5">
+    <div class="row">
+      <div class="col">
+          <div class="login-container">
+              <h2>Iniciar Sesión</h2>
+              <form [formGroup]="form" (ngSubmit)="OnLogin()">
+                <div class="form-group">
+                  <input type="email"
+                        formControlName="correo"
+                        class="form-control"
+                        id="exampleInputEmail1" 
+                        aria-describedby="emailHelp" 
+                        placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <input type="password"  
+                        formControlName="contraseña"
+                        class="form-control" 
+                        id="exampleInputPassword1" 
+                        placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <span>No tiene una cuenta? </span><a href="/register">Registrese</a>
+                </div>
+                
+
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+              </form>
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+

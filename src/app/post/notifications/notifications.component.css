@@ -1,0 +1,25 @@
+.doc{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: 10px;
+    padding: 5px;
+    background-color: rgb(183, 216, 243);
+    border: 1px solid rgb(162, 186, 206);
+    border-radius: 1px;
+    box-shadow: 0 5px 0 1px rgba(162, 186, 206, 1);
+    transition: all 0.3s ease;
+}
+.doc:hover{
+    background-color: rgb(199, 228, 251);
+}
+
+.doc span{
+    font-size: 14px;
+    color:rgb(93, 93, 93);
+}
+
+.doc div{
+    font-size: 20px;
+}

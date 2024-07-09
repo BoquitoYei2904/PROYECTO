@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height of the viewport */
+}
+
+app-navbar {
+    flex: 0 0 auto; /* Navbar stays static */
+  }
+
+.container-scroll {
+    flex: 1 1 auto; /* Take up remaining space */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
